@@ -4,7 +4,7 @@ import time
 import subprocess
 import pytest
 from datetime import datetime
-
+import sys
 
 # class TestMyApp:
 #    @pytest.fixture
@@ -28,11 +28,14 @@ from datetime import datetime
 
 
 def test_complete_screenshot():
-    subprocess.Popen(
+    process = subprocess.Popen(
         [r'Z:\APM-964 Регрессия мастера AirViewSetup_8.4.2.12.02c05c4\AirViewSetup_8.4.2.12.02c05c4\AirView.exe'])
     time.sleep(3)
+
 
     screenshot = pyautogui.screenshot()
     timestamp = datetime.now().strftime("%d-%m-%Y_%H:%M:%S")
     screenshot.save(f'../images/windows/{timestamp}.png')
+
+    process.terminate()
 
